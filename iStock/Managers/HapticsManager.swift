@@ -17,6 +17,4 @@ final class HapticsManager {
         
     }
     
-    
-    
 }
