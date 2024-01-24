@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		450960D52B614DE000043B00 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450960D42B614DE000043B00 /* Extensions.swift */; };
 		457951342B605A1C002D94EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457951332B605A1C002D94EF /* AppDelegate.swift */; };
 		457951362B605A1C002D94EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457951352B605A1C002D94EF /* SceneDelegate.swift */; };
 		457951382B605A1C002D94EF /* WatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457951372B605A1C002D94EF /* WatchListViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		450960D42B614DE000043B00 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		457951302B605A1C002D94EF /* iStock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iStock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		457951332B605A1C002D94EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		457951352B605A1C002D94EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				4579513C2B605A1D002D94EF /* Assets.xcassets */,
 				457951332B605A1C002D94EF /* AppDelegate.swift */,
 				457951352B605A1C002D94EF /* SceneDelegate.swift */,
+				450960D42B614DE000043B00 /* Extensions.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				457951382B605A1C002D94EF /* WatchListViewController.swift in Sources */,
 				4579514D2B6063BF002D94EF /* TopStoriesNewsViewController.swift in Sources */,
 				457951552B6066B1002D94EF /* PersistenceManager.swift in Sources */,
+				450960D52B614DE000043B00 /* Extensions.swift in Sources */,
 				457951342B605A1C002D94EF /* AppDelegate.swift in Sources */,
 				457951362B605A1C002D94EF /* SceneDelegate.swift in Sources */,
 				4579514F2B6063D1002D94EF /* SearchResultsViewController.swift in Sources */,
