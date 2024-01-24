@@ -8,6 +8,8 @@
 import UIKit
 
 class WatchListViewController: UIViewController {
+    
+    private var searchTimer: Timer?
 
     //MARK: - Lifecycle
     override func viewDidLoad() {
@@ -28,7 +30,7 @@ class WatchListViewController: UIViewController {
     
     private func setupTitleView() {
         let titleView = UIView(frame: CGRect( x: 0, y: 0, width: view.width, height: navigationController?.navigationBar.height ?? 100))
-        
+    
         let label = UILabel(frame: CGRect(x: 5, y: 0, width: titleView.width - 20, height: titleView.height))
         label.text = "Stocks"
         label.font = .systemFont(ofSize: 28, weight: .bold)
@@ -48,18 +50,36 @@ extension WatchListViewController: UISearchResultsUpdating {
             
             return
         }
+        // Reset timer
+        searchTimer?.invalidate()
+        
         // Optimize to reduce nimber og searches for when user stops typing.
-        
-        // Call API to search
-        
-        // Update resultsViewController
-        resultsVC.update(with: ["GOOG"])
+        searchTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false, block: {
+            _ in
+            // Call API to search
+            APIManager.shared.search(query: query) {
+                result in
+                switch result {
+                case .success(let response):
+                    // Update resultsViewController
+                    DispatchQueue.main.async {
+                        resultsVC.update(with: response.result)
+                    }
+                case .failure(let error):
+                    DispatchQueue.main.async {
+                        resultsVC.update(with: [])
+                    }
+                    print(error)
+                }
+            }
+        })
     }
     
 }
 
 extension WatchListViewController: SearchResultsViewControllerDelegate {
-    func searchResultsViewControllerDidSelect(searchResult: String) {
+    func searchResultsViewControllerDidSelect(searchResult: SearchResult) {
         // Present stock details for given selection
+        print("Did select \(searchResult.displaySymbol)")
     }
 }
