@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		450960D52B614DE000043B00 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450960D42B614DE000043B00 /* Extensions.swift */; };
 		450960D72B61592700043B00 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 450960D62B61592700043B00 /* SearchResultTableViewCell.swift */; };
+		457788A62B62FDE10027DF3E /* PanelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457788A52B62FDE10027DF3E /* PanelViewController.swift */; };
 		457951342B605A1C002D94EF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457951332B605A1C002D94EF /* AppDelegate.swift */; };
 		457951362B605A1C002D94EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457951352B605A1C002D94EF /* SceneDelegate.swift */; };
 		457951382B605A1C002D94EF /* WatchListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457951372B605A1C002D94EF /* WatchListViewController.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		450960D42B614DE000043B00 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		450960D62B61592700043B00 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
+		457788A52B62FDE10027DF3E /* PanelViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelViewController.swift; sourceTree = "<group>"; };
 		457951302B605A1C002D94EF /* iStock.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iStock.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		457951332B605A1C002D94EF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		457951352B605A1C002D94EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				4579514E2B6063D1002D94EF /* SearchResultsViewController.swift */,
 				4579514C2B6063BF002D94EF /* TopStoriesNewsViewController.swift */,
 				457951502B6063DC002D94EF /* StockDetailsViewController.swift */,
+				457788A52B62FDE10027DF3E /* PanelViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 				458A1AEA2B619BFC004A4246 /* SearchResponse.swift in Sources */,
 				457951362B605A1C002D94EF /* SceneDelegate.swift in Sources */,
 				4579514F2B6063D1002D94EF /* SearchResultsViewController.swift in Sources */,
+				457788A62B62FDE10027DF3E /* PanelViewController.swift in Sources */,
 				457951532B6066A0002D94EF /* APIManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

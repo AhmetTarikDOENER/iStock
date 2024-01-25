@@ -17,6 +17,7 @@ class WatchListViewController: UIViewController {
         view.backgroundColor = .systemBackground
         setupSearchController()
         setupTitleView()
+        setupChild()
     }
     
     //MARK: - Private
@@ -37,6 +38,19 @@ class WatchListViewController: UIViewController {
         titleView.addSubview(label)
         
         navigationItem.titleView = titleView
+    }
+    
+    private func setupChild() {
+        let vc = PanelViewController()
+        addChild(vc)
+        view.addSubview(vc.view)
+        vc.view.frame = CGRect(
+            x: 0,
+            y: view.height / 2,
+            width: view.width,
+            height: view.height
+        )
+        vc.didMove(toParent: self)
     }
 
 }
