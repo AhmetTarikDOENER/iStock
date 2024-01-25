@@ -9,10 +9,14 @@ import UIKit
 
 class TopStoriesNewsViewController: UIViewController {
 
+    let tableView: UITableView = {
+        let table = UITableView()
+        
+        return table
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
 }
