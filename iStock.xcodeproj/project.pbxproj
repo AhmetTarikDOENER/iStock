@@ -22,6 +22,7 @@
 		457951552B6066B1002D94EF /* PersistenceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457951542B6066B1002D94EF /* PersistenceManager.swift */; };
 		457951572B6066BD002D94EF /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 457951562B6066BD002D94EF /* HapticsManager.swift */; };
 		458A1AEA2B619BFC004A4246 /* SearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 458A1AE92B619BFB004A4246 /* SearchResponse.swift */; };
+		45F94B9B2B63FC9E00A0B66C /* NewsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F94B9A2B63FC9E00A0B66C /* NewsHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		457951542B6066B1002D94EF /* PersistenceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceManager.swift; sourceTree = "<group>"; };
 		457951562B6066BD002D94EF /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		458A1AE92B619BFB004A4246 /* SearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResponse.swift; sourceTree = "<group>"; };
+		45F94B9A2B63FC9E00A0B66C /* NewsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			children = (
 				4579513E2B605A1D002D94EF /* LaunchScreen.storyboard */,
 				450960D62B61592700043B00 /* SearchResultTableViewCell.swift */,
+				45F94B9A2B63FC9E00A0B66C /* NewsHeaderView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -218,6 +221,7 @@
 				450960D52B614DE000043B00 /* Extensions.swift in Sources */,
 				457951342B605A1C002D94EF /* AppDelegate.swift in Sources */,
 				458A1AEA2B619BFC004A4246 /* SearchResponse.swift in Sources */,
+				45F94B9B2B63FC9E00A0B66C /* NewsHeaderView.swift in Sources */,
 				457951362B605A1C002D94EF /* SceneDelegate.swift in Sources */,
 				4579514F2B6063D1002D94EF /* SearchResultsViewController.swift in Sources */,
 				457951532B6066A0002D94EF /* APIManager.swift in Sources */,

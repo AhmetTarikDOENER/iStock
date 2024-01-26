@@ -35,3 +35,21 @@ extension UIView {
     }
     
 }
+
+//MARK: - AddSubviews
+extension UIView {
+    func addSubviews(_ views: UIView...) {
+        views.forEach {
+            addSubview($0)
+        }
+    }
+}
+
+//MARK: - UIButton
+extension UIButton {
+    
+    func setCornerRadius(_ cornerRadius: CGFloat) {
+        self.layer.cornerRadius = cornerRadius
+    }
+    
+}
