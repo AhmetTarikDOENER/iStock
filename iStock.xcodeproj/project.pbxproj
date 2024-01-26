@@ -26,6 +26,7 @@
 		45F94B9D2B640F2500A0B66C /* NewsStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F94B9C2B640F2500A0B66C /* NewsStory.swift */; };
 		45F94B9F2B6416F400A0B66C /* NewsStoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F94B9E2B6416F400A0B66C /* NewsStoryTableViewCell.swift */; };
 		45F94BA22B64210900A0B66C /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 45F94BA12B64210900A0B66C /* SDWebImage */; };
+		45F94BA42B643B0F00A0B66C /* MarketDataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F94BA32B643B0F00A0B66C /* MarketDataResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +49,7 @@
 		45F94B9A2B63FC9E00A0B66C /* NewsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsHeaderView.swift; sourceTree = "<group>"; };
 		45F94B9C2B640F2500A0B66C /* NewsStory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsStory.swift; sourceTree = "<group>"; };
 		45F94B9E2B6416F400A0B66C /* NewsStoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsStoryTableViewCell.swift; sourceTree = "<group>"; };
+		45F94BA32B643B0F00A0B66C /* MarketDataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDataResponse.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +99,7 @@
 			children = (
 				458A1AE92B619BFB004A4246 /* SearchResponse.swift */,
 				45F94B9C2B640F2500A0B66C /* NewsStory.swift */,
+				45F94BA32B643B0F00A0B66C /* MarketDataResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -222,6 +225,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45F94BA42B643B0F00A0B66C /* MarketDataResponse.swift in Sources */,
 				457951572B6066BD002D94EF /* HapticsManager.swift in Sources */,
 				450960D72B61592700043B00 /* SearchResultTableViewCell.swift in Sources */,
 				457951512B6063DC002D94EF /* StockDetailsViewController.swift in Sources */,
