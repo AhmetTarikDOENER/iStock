@@ -44,7 +44,7 @@ class NewsHeaderView: UITableViewHeaderFooterView {
     //MARK: - Init
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-        contentView.backgroundColor = .secondarySystemBackground
+        contentView.backgroundColor = .systemBackground
         contentView.addSubviews(label, button)
         button.addTarget(self, action: #selector(didTapAddButton), for: .touchUpInside)
     }
