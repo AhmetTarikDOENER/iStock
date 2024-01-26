@@ -17,7 +17,7 @@ class NewsViewController: UIViewController {
         return table
     }()
     
-    enum  `Type` {
+    enum `Type` {
         case topStories
         case company(symbol: String)
         
@@ -32,7 +32,7 @@ class NewsViewController: UIViewController {
     }
     
     //MARK: - Properties
-    private let type: Type
+    private let type: `Type`
     private var stories = [String]()
     
     //MARK: - Init

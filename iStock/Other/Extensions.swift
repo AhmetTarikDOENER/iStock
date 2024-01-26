@@ -36,6 +36,16 @@ extension UIView {
     
 }
 
+//MARK: - DateFormatter
+extension DateFormatter {
+    static let newsDateFormatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "YYYY-MM-dd"
+        
+        return formatter
+    }()
+}
+
 //MARK: - AddSubviews
 extension UIView {
     func addSubviews(_ views: UIView...) {
@@ -51,5 +61,4 @@ extension UIButton {
     func setCornerRadius(_ cornerRadius: CGFloat) {
         self.layer.cornerRadius = cornerRadius
     }
-    
 }
