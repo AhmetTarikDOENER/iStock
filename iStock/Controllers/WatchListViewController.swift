@@ -44,7 +44,7 @@ class WatchListViewController: UIViewController {
     }
     
     private func setupFloatingPanel() {
-        let vc = NewsViewController(type: .company(symbol: "SNAP"))
+        let vc = NewsViewController(type: .topStories)
         let panel = FloatingPanelController(delegate: self)
         panel.surfaceView.backgroundColor = .systemBackground
         panel.set(contentViewController: vc)
