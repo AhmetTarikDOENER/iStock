@@ -16,10 +16,12 @@ class WatchListViewController: UIViewController {
     private var watchlistMap: [String: [CandleStick]] = [:]
     private var viewModels: [WatchListTableViewCell.ViewModel] = []
     
+    static var maxChangeWidth: CGFloat = 0
+    
     
     private let tableView: UITableView = {
         let table = UITableView()
-        
+        table.register(WatchListTableViewCell.self, forCellReuseIdentifier: WatchListTableViewCell.identifier)
         return table
     }()
 
@@ -32,6 +34,11 @@ class WatchListViewController: UIViewController {
         fetchWatchlistData()
         setupTitleView()
         setupFloatingPanel()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.frame = view.bounds
     }
     
     //MARK: - Private
@@ -105,11 +112,16 @@ class WatchListViewController: UIViewController {
                     companyName: UserDefaults.standard.string(forKey: symbol) ?? "Company",
                     price: getLatestClosingPrice(from: candleSticks),
                     changeColor: changePercentage < 0 ? .systemRed : .systemGreen,
-                    changePercentage: .percentage(from: changePercentage)
+                    changePercentage: .percentage(from: changePercentage),
+                    chartViewModel: .init(
+                        data: candleSticks.reversed().map { $0.close },
+                        showLegend: false,
+                        showAxis: false
+                    )
                 )
             )
         }
-        print("\n\n\(viewModels)\n\n")
+        
         self.viewModels = viewModels
     }
     
@@ -144,7 +156,7 @@ extension WatchListViewController: UISearchResultsUpdating {
         // Reset timer
         searchTimer?.invalidate()
         
-        // Optimize to reduce nimber og searches for when user stops typing.
+        // Optimize to reduce number of searches for when user stops typing.
         searchTimer = Timer.scheduledTimer(withTimeInterval: 0.3, repeats: false, block: {
             _ in
             // Call API to search
@@ -189,11 +201,20 @@ extension WatchListViewController: FloatingPanelControllerDelegate {
 extension WatchListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        watchlistMap.count
+        viewModels.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        UITableViewCell()
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: WatchListTableViewCell.identifier, for: indexPath) as? WatchListTableViewCell else {
+            fatalError()
+        }
+        cell.delegate = self
+        cell.configure(with: viewModels[indexPath.row])
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        WatchListTableViewCell.preferredHeight
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -201,4 +222,12 @@ extension WatchListViewController: UITableViewDelegate, UITableViewDataSource {
         // Open details for selection
     }
     
+}
+
+extension WatchListViewController: WatchListTableViewCellDelegate {
+    
+    func didUpdateMaxWidth() {
+        // opt only refresh rows prior to the current row that changes the max width
+        tableView.reloadData()
+    }
 }
