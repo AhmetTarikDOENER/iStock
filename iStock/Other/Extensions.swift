@@ -129,3 +129,9 @@ extension NumberFormatter {
         return formatter
     }()
 }
+
+//MARK: - Notification
+extension Notification.Name {
+    
+    static let didAddToWatchlist = Notification.Name("")
+}

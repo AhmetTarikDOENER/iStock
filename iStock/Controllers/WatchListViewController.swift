@@ -18,6 +18,7 @@ class WatchListViewController: UIViewController {
     
     static var maxChangeWidth: CGFloat = 0
     
+    private var observer: NSObjectProtocol?
     
     private let tableView: UITableView = {
         let table = UITableView()
@@ -34,6 +35,7 @@ class WatchListViewController: UIViewController {
         fetchWatchlistData()
         setupTitleView()
         setupFloatingPanel()
+        setupObserver()
     }
     
     override func viewDidLayoutSubviews() {
@@ -42,6 +44,18 @@ class WatchListViewController: UIViewController {
     }
     
     //MARK: - Private
+    private func setupObserver() {
+        observer = NotificationCenter.default.addObserver(
+            forName: .didAddToWatchlist,
+            object: nil,
+            queue: .main
+        ) {
+                [weak self] _ in
+                self?.viewModels.removeAll()
+                self?.fetchWatchlistData()
+            }
+    }
+    
     private func setupSearchController() {
         let resultViewController = SearchResultsViewController()
         resultViewController.delegate = self
@@ -79,7 +93,7 @@ class WatchListViewController: UIViewController {
     private func fetchWatchlistData() {
         let symbols = PersistenceManager.shared.watchList
         let group = DispatchGroup()
-        for symbol in symbols {
+        for symbol in symbols where watchlistMap[symbol] == nil {
             group.enter()
             APIManager.shared.marketData(for: symbol) {
                 [weak self] result in
