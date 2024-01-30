@@ -11,6 +11,8 @@ class StockDetailHeaderView: UIView, UICollectionViewDelegate, UICollectionViewD
     
     private let chartView = StockChartView()
     
+    private var metricViewModels: [MetricCollectionViewCell.ViewModel] = []
+    
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -19,7 +21,8 @@ class StockDetailHeaderView: UIView, UICollectionViewDelegate, UICollectionViewD
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .red
-        // Register cells
+        collectionView.register(MetricCollectionViewCell.self, forCellWithReuseIdentifier: MetricCollectionViewCell.identifier)
+        collectionView.backgroundColor = .secondarySystemBackground
         return collectionView
     }()
     //MARK: - Init
@@ -48,25 +51,29 @@ class StockDetailHeaderView: UIView, UICollectionViewDelegate, UICollectionViewD
     }
     //MARK: - Collection View
     func configure(
-        chartViewModel: StockChartView.ViewModel
+        chartViewModel: StockChartView.ViewModel,
+        metricViewModels: [MetricCollectionViewCell.ViewModel]
     ) {
-        
-    }
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        1
+        // Update chart
+        self.metricViewModels = metricViewModels
+        collectionView.reloadData()
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        0
+        metricViewModels.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        UICollectionViewCell()
+        let viewModel = metricViewModels[indexPath.row]
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MetricCollectionViewCell.identifier, for: indexPath) as? MetricCollectionViewCell else {
+            fatalError()
+        }
+        cell.configure(with: viewModel)
+        return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        CGSize(width: width / 2, height: height / 3)
+        CGSize(width: width / 2, height: 100 / 3)
     }
     
     
