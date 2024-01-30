@@ -74,6 +74,17 @@ final class APIManager {
         request(url: url, expecting: MarketDataResponse.self, completion: completion)
     }
     
+    public func getFinancialMetrics(
+        for symbol: String,
+        completion: @escaping (Result<FinancialMetricsResponse, Error>) -> Void
+    ) {
+        let url = url(
+            for: .financialMetrics,
+            queryParams: ["symbol": symbol, "metric": "all"]
+        )
+        request(url: url, expecting: FinancialMetricsResponse.self, completion: completion)
+    }
+    
     
     //MARK: - Private
     private enum Endpoint: String {
@@ -81,6 +92,7 @@ final class APIManager {
         case topStories = "news"
         case companyNews = "company-news"
         case marketData = "stock/candle"
+        case financialMetrics = "stock/metric"
     }
     
     private enum APIError: Error {
