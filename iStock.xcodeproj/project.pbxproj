@@ -25,6 +25,8 @@
 		45E07F002B696D6000F6CF6A /* FinancialMetricsResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E07EFF2B696D6000F6CF6A /* FinancialMetricsResponse.swift */; };
 		45E07F022B69706400F6CF6A /* StockDetailHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E07F012B69706400F6CF6A /* StockDetailHeaderView.swift */; };
 		45E07F042B69789400F6CF6A /* MetricCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E07F032B69789400F6CF6A /* MetricCollectionViewCell.swift */; };
+		45E07F072B698E3900F6CF6A /* DGCharts in Frameworks */ = {isa = PBXBuildFile; productRef = 45E07F062B698E3900F6CF6A /* DGCharts */; };
+		45E07F092B698E3900F6CF6A /* DGChartsDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = 45E07F082B698E3900F6CF6A /* DGChartsDynamic */; };
 		45F94B9B2B63FC9E00A0B66C /* NewsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F94B9A2B63FC9E00A0B66C /* NewsHeaderView.swift */; };
 		45F94B9D2B640F2500A0B66C /* NewsStory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F94B9C2B640F2500A0B66C /* NewsStory.swift */; };
 		45F94B9F2B6416F400A0B66C /* NewsStoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F94B9E2B6416F400A0B66C /* NewsStoryTableViewCell.swift */; };
@@ -67,7 +69,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45E07F092B698E3900F6CF6A /* DGChartsDynamic in Frameworks */,
 				45F94BA22B64210900A0B66C /* SDWebImage in Frameworks */,
+				45E07F072B698E3900F6CF6A /* DGCharts in Frameworks */,
 				457788A92B63019B0027DF3E /* FloatingPanel in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -181,6 +185,8 @@
 			packageProductDependencies = (
 				457788A82B63019B0027DF3E /* FloatingPanel */,
 				45F94BA12B64210900A0B66C /* SDWebImage */,
+				45E07F062B698E3900F6CF6A /* DGCharts */,
+				45E07F082B698E3900F6CF6A /* DGChartsDynamic */,
 			);
 			productName = iStock;
 			productReference = 457951302B605A1C002D94EF /* iStock.app */;
@@ -213,6 +219,7 @@
 			packageReferences = (
 				457788A72B63019B0027DF3E /* XCRemoteSwiftPackageReference "FloatingPanel" */,
 				45F94BA02B64210900A0B66C /* XCRemoteSwiftPackageReference "SDWebImage" */,
+				45E07F052B698E3900F6CF6A /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = 457951312B605A1C002D94EF /* Products */;
 			projectDirPath = "";
@@ -491,6 +498,14 @@
 				minimumVersion = 2.8.1;
 			};
 		};
+		45E07F052B698E3900F6CF6A /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		45F94BA02B64210900A0B66C /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
@@ -506,6 +521,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 457788A72B63019B0027DF3E /* XCRemoteSwiftPackageReference "FloatingPanel" */;
 			productName = FloatingPanel;
+		};
+		45E07F062B698E3900F6CF6A /* DGCharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 45E07F052B698E3900F6CF6A /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGCharts;
+		};
+		45E07F082B698E3900F6CF6A /* DGChartsDynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 45E07F052B698E3900F6CF6A /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = DGChartsDynamic;
 		};
 		45F94BA12B64210900A0B66C /* SDWebImage */ = {
 			isa = XCSwiftPackageProductDependency;
