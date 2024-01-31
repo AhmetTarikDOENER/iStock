@@ -9,17 +9,14 @@ import UIKit
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        debug()
-        
-        return true
-    }
     
-    private func debug() {
-        
+    /// Gets called when app has launched
+    /// - Parameters:
+    ///   - application: App instance
+    ///   - launchOptions: Launch properties
+    /// - Returns: Bool for success or failure
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        return true
     }
 
     // MARK: UISceneSession Lifecycle

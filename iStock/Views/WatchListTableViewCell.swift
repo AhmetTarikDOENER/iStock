@@ -7,17 +7,23 @@
 
 import UIKit
 
+/// Delegate to notify of cell events
 protocol WatchListTableViewCellDelegate: AnyObject {
     func didUpdateMaxWidth()
 }
 
-class WatchListTableViewCell: UITableViewCell {
+/// Table cell for watchlist item
+final class WatchListTableViewCell: UITableViewCell {
     
+    /// Identifier for a cell
     static let identifier = "WatchListTableViewCell"
+    /// Ideal cell height
     static let preferredHeight: CGFloat = 60
     
+    /// Reference delegate events
     weak var delegate: WatchListTableViewCellDelegate?
     
+    /// Watchlist table cell viewModel
     struct ViewModel {
         
         let symbol: String
@@ -67,7 +73,7 @@ class WatchListTableViewCell: UITableViewCell {
         chart.isUserInteractionEnabled = false
         return chart
     }()
-    
+    //MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.clipsToBounds = true
@@ -136,6 +142,8 @@ class WatchListTableViewCell: UITableViewCell {
         miniChartView.reset()
     }
     
+    /// Configure view
+    /// - Parameter viewModel: view ViewModel
     public func configure(with viewModel: ViewModel) {
         symbolLabel.text = viewModel.symbol
         nameLabel.text = viewModel.companyName

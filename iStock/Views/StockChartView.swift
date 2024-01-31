@@ -8,8 +8,10 @@
 import UIKit
 import DGCharts
 
-class StockChartView: UIView {
+/// View Controller to show a chart
+final class StockChartView: UIView {
     
+    /// Chart view ViewModel
     struct ViewModel {
         
         let data: [Double]
@@ -46,10 +48,13 @@ class StockChartView: UIView {
         chartView.frame = bounds
     }
     
+    /// Reset the chart view
     func reset() {
         chartView.data = nil
     }
     
+    /// Configure view
+    /// - Parameter viewModel: view ViewModel
     func configure(with viewModel: ViewModel) {
         var entries = [ChartDataEntry]()
         for (index, value) in viewModel.data.enumerated() {

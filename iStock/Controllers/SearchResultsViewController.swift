@@ -7,16 +7,22 @@
 
 import UIKit
 
+/// Delegate for search results events
 protocol SearchResultsViewControllerDelegate: AnyObject {
+    /// Notify delegate of selection
+    /// - Parameter searchResult: Result that was picked
     func searchResultsViewControllerDidSelect(searchResult: SearchResult)
 }
 
-class SearchResultsViewController: UIViewController {
+/// View Controller to show search results
+final class SearchResultsViewController: UIViewController {
     
     weak var delegate: SearchResultsViewControllerDelegate?
     
+    /// Colleciton of results
     private var results: [SearchResult] = []
-
+    
+    /// Primary view
     private let tableView: UITableView = {
         let table = UITableView()
         table.register(SearchResultTableViewCell.self, forCellReuseIdentifier: SearchResultTableViewCell.identifier)
@@ -37,12 +43,15 @@ class SearchResultsViewController: UIViewController {
     }
     
     //MARK: - Private
+    /// Sets up tableView
     private func setupTable() {
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
     }
     //MARK: - Public
+    /// Update results on View Controller
+    /// - Parameter results: Colleciton of new results
     public func update(with results: [SearchResult]) {
         self.results = results
         tableView.isHidden = results.isEmpty
@@ -50,7 +59,7 @@ class SearchResultsViewController: UIViewController {
     }
 
 }
-
+//MARK: - UITableViewDelegate, UITableViewDataSource
 extension SearchResultsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

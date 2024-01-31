@@ -8,17 +8,24 @@
 import UIKit
 import SafariServices
 
-class StockDetailsViewController: UIViewController {
+/// View Controller to show stock details
+final class StockDetailsViewController: UIViewController {
 
     //MARK: - Properties
+    /// Stock symbol
     private let symbol: String
+    /// Company name
     private let companyName: String
+    /// Collection of data
     private var candleStickData: [CandleStick]
     
+    /// Collection of news stories
     private var stories: [NewsStory] = []
     
+    /// Company metrics
     private var metrics: Metrics?
     
+    /// Primary view
     private let tableView: UITableView = {
         let table = UITableView()
         table.register(NewsHeaderView.self, forHeaderFooterViewReuseIdentifier: NewsHeaderView.identifier)
@@ -60,6 +67,7 @@ class StockDetailsViewController: UIViewController {
     }
     
     //MARK: - Private
+    /// Sets up close button
     private func setupCloseButton() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(
             barButtonSystemItem: .close,
@@ -68,10 +76,12 @@ class StockDetailsViewController: UIViewController {
         )
     }
     
+    /// Handle close button tap
     @objc private func didTapCloseButton() {
         dismiss(animated: true)
     }
     
+    /// Sets up table
     private func setupTable() {
         view.addSubview(tableView)
         tableView.delegate = self
@@ -86,6 +96,7 @@ class StockDetailsViewController: UIViewController {
         )
     }
     
+    /// Fetches financial metrics
     private func fetchFinancialData() {
         let group = DispatchGroup()
         // Fetch candle sticks if needed
@@ -140,6 +151,7 @@ class StockDetailsViewController: UIViewController {
         }
     }
     
+    /// Render chart and metrics
     private func renderChart() {
         let headerView = StockDetailHeaderView(
             frame: CGRect(
@@ -171,6 +183,11 @@ class StockDetailsViewController: UIViewController {
         tableView.tableHeaderView = headerView
     }
     
+    /// Get change percentage
+    /// - Parameters:
+    ///   - symbol: Symbol of company
+    ///   - data: Colleciton of data
+    /// - Returns: Double percentage
     private func getChangePercentage(symbol: String, data: [CandleStick]) -> Double {
         let latestDate = data[0].date
         guard let latestClose = data.first?.close,
@@ -185,7 +202,7 @@ class StockDetailsViewController: UIViewController {
     }
 
 }
-
+//MARK: - UITableViewDelegate, UITableViewDataSource
 extension StockDetailsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -229,9 +246,11 @@ extension StockDetailsViewController: UITableViewDelegate, UITableViewDataSource
         present(vc, animated: true)
     }
 }
-
+//MARK: - NewsHeaderViewDelegate
 extension StockDetailsViewController: NewsHeaderViewDelegate {
     
+    /// Add selected company to watchlist
+    /// - Parameter headerView: Reference of news header view
     func newsHeaderViewDidTapAddButton(_ headerView: NewsHeaderView) {
         headerView.button.isHidden = true
         PersistenceManager.shared.addToWatchList(symbol: symbol, companyName: companyName)

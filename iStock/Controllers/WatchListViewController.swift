@@ -8,18 +8,26 @@
 import UIKit
 import FloatingPanel
 
+/// View Controller to render user watchlist
 class WatchListViewController: UIViewController {
     
+    /// Timer to optimize searhing
     private var searchTimer: Timer?
+    /// Reference to floating news panel
     private var panel: FloatingPanelController?
     
+    /// Model
     private var watchlistMap: [String: [CandleStick]] = [:]
+    /// ViewModels
     private var viewModels: [WatchListTableViewCell.ViewModel] = []
     
+    /// Width to track change label geometry
     static var maxChangeWidth: CGFloat = 0
     
+    /// Observer for watchlist updates
     private var observer: NSObjectProtocol?
     
+    /// Main view to render watchlist
     private let tableView: UITableView = {
         let table = UITableView()
         table.register(WatchListTableViewCell.self, forCellReuseIdentifier: WatchListTableViewCell.identifier)
@@ -27,6 +35,7 @@ class WatchListViewController: UIViewController {
     }()
 
     //MARK: - Lifecycle
+    /// Called when view loads
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
@@ -38,12 +47,14 @@ class WatchListViewController: UIViewController {
         setupObserver()
     }
     
+    /// Layout subviews
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.frame = view.bounds
     }
     
     //MARK: - Private
+    /// Sets up observer for watchlist
     private func setupObserver() {
         observer = NotificationCenter.default.addObserver(
             forName: .didAddToWatchlist,
@@ -56,6 +67,7 @@ class WatchListViewController: UIViewController {
             }
     }
     
+    /// Sets up search and result controller
     private func setupSearchController() {
         let resultViewController = SearchResultsViewController()
         resultViewController.delegate = self
@@ -64,6 +76,7 @@ class WatchListViewController: UIViewController {
         navigationItem.searchController = searchViewController
     }
     
+    /// Sets up custom titleView
     private func setupTitleView() {
         let titleView = UIView(frame: CGRect( x: 0, y: 0, width: view.width, height: navigationController?.navigationBar.height ?? 100))
     
@@ -75,6 +88,7 @@ class WatchListViewController: UIViewController {
         navigationItem.titleView = titleView
     }
     
+    /// Sets up floating news panels
     private func setupFloatingPanel() {
         let vc = NewsViewController(type: .topStories)
         let panel = FloatingPanelController(delegate: self)
@@ -84,12 +98,14 @@ class WatchListViewController: UIViewController {
         panel.track(scrollView: vc.tableView)
     }
     
+    /// Sets up tableView
     private func setupTableView() {
         view.addSubview(tableView)
         tableView.delegate = self
         tableView.dataSource = self
     }
     
+    /// Fetch wacthlist models
     private func fetchWatchlistData() {
         let symbols = PersistenceManager.shared.watchList
         let group = DispatchGroup()
@@ -116,6 +132,7 @@ class WatchListViewController: UIViewController {
         }
     }
     
+    /// Creates view models from models
     private func createViewModels() {
         var viewModels = [WatchListTableViewCell.ViewModel]()
         for (symbol, candleSticks) in watchlistMap {
@@ -140,11 +157,19 @@ class WatchListViewController: UIViewController {
         self.viewModels = viewModels
     }
     
+    /// Gets latest closing price
+    /// - Parameter data: Collection of data
+    /// - Returns: String
     private func getLatestClosingPrice(from data: [CandleStick]) -> String {
         guard let closingPrice = data.first?.close else { return "" }
         return .formatted(number: closingPrice)
     }
     
+    /// Gets change percentage for symbol data
+    /// - Parameters:
+    ///   - symbol: Symbol to check for
+    ///   - data: Collection of data
+    /// - Returns: Double percentage
     private func getChangePercentage(symbol: String, data: [CandleStick]) -> Double {
         let latestDate = data[0].date
         guard let latestClose = data.first?.close,
@@ -158,9 +183,11 @@ class WatchListViewController: UIViewController {
         return diff
     }
 }
-
+//MARK: - UISearchResultsUpdate
 extension WatchListViewController: UISearchResultsUpdating {
     
+    /// Update search on key tap
+    /// - Parameter searchController: Reference of the search controller
     func updateSearchResults(for searchController: UISearchController) {
         guard let query = searchController.searchBar.text,
               let resultsVC = searchController.searchResultsController as? SearchResultsViewController,
@@ -194,8 +221,10 @@ extension WatchListViewController: UISearchResultsUpdating {
     }
     
 }
-
+//MARK: - SearchResultsViewControllerDelegate
 extension WatchListViewController: SearchResultsViewControllerDelegate {
+    /// Notify of search result selection
+    /// - Parameter searchResult: Search result that was selected
     func searchResultsViewControllerDidSelect(searchResult: SearchResult) {
         // Present stock details for given selection
         let vc = StockDetailsViewController(
@@ -207,15 +236,17 @@ extension WatchListViewController: SearchResultsViewControllerDelegate {
         present(navVC, animated: true)
     }
 }
-
+//MARK: - FloatingPanelControllerDelegate
 extension WatchListViewController: FloatingPanelControllerDelegate {
     
+    /// Gets floating panel state chnage
+    /// - Parameter fpc: Reference of controller
     func floatingPanelDidMove(_ fpc: FloatingPanelController) {
         navigationItem.titleView?.isHidden = fpc.state == .full
     }
     
 }
-
+//MARK: - UITableViewDelegate, UITableViewDataSource
 extension WatchListViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -269,11 +300,12 @@ extension WatchListViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
 }
-
+//MARK: - WatchListTableViewCellDelegate
 extension WatchListViewController: WatchListTableViewCellDelegate {
     
+    /// Notify delegate of cahnge label width
     func didUpdateMaxWidth() {
-        // opt only refresh rows prior to the current row that changes the max width
+        // opt: only refresh rows prior to the current row that changes the max width
         tableView.reloadData()
     }
 }

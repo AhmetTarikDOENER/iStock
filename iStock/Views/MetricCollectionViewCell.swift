@@ -7,10 +7,13 @@
 
 import UIKit
 
-class MetricCollectionViewCell: UICollectionViewCell {
+/// Metric tableView cell
+final class MetricCollectionViewCell: UICollectionViewCell {
     
+    /// identifier for a cell
     static let identifier = "MetricCollectionViewCell"
     
+    /// Metric tableView cell ViewModel
     struct ViewModel {
         
         let name: String
@@ -29,7 +32,7 @@ class MetricCollectionViewCell: UICollectionViewCell {
         
         return label
     }()
-    
+    //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.clipsToBounds = true
@@ -64,6 +67,8 @@ class MetricCollectionViewCell: UICollectionViewCell {
         valueLabel.text = nil
     }
     
+    /// Configure view
+    /// - Parameter viewModel: views ViewModel
     func configure(with viewModel: ViewModel) {
         nameLabel.text = viewModel.name + ":"
         valueLabel.text = viewModel.value

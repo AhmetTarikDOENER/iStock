@@ -7,11 +7,13 @@
 
 import Foundation
 
+/// Metrics response from API
 struct FinancialMetricsResponse: Codable {
     
     let metric: Metrics
 }
 
+/// FInancial metrics
 struct Metrics: Codable {
     
     let TenDayAverageTradingVolume: Float

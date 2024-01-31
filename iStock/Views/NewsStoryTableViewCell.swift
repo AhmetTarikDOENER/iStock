@@ -8,11 +8,15 @@
 import UIKit
 import SDWebImage
 
-class NewsStoryTableViewCell: UITableViewCell {
+/// News story tableView cell
+final class NewsStoryTableViewCell: UITableViewCell {
     
+    /// Identifier for a cell
     static let identifier = "NewsStoryTableViewCell"
+    /// Ideal height for a cell
     static let preferredHeight: CGFloat = 140
     
+    /// Cell viewModel
     struct ViewModel {
         
         let source: String
@@ -59,7 +63,7 @@ class NewsStoryTableViewCell: UITableViewCell {
         
         return image
     }()
-    
+    //MARK: - Init
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         contentView.backgroundColor = nil
@@ -111,6 +115,8 @@ class NewsStoryTableViewCell: UITableViewCell {
         storyImageView.image = nil
     }
     
+    /// Configure view
+    /// - Parameter viewModel: view ViewModel
     public func configure(with viewModel: ViewModel) {
         headlineLabel.text = viewModel.headline
         sourceLabel.text = viewModel.source

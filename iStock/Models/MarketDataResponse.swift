@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// API Provider request a premium account for this data
+/// Market data response
 struct MarketDataResponse: Codable {
     
     let close: [Double]
@@ -26,6 +26,7 @@ struct MarketDataResponse: Codable {
         case timestamps = "t"
     }
     
+    /// Convet market data to array of candle stick model
     var candleSticks: [CandleStick] {
         var result = [CandleStick]()
         for index in 0..<open.count {
@@ -45,6 +46,7 @@ struct MarketDataResponse: Codable {
     
 }
 
+/// Model to represent data for single day
 struct CandleStick {
     
     let date: Date
