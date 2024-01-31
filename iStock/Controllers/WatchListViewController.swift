@@ -108,6 +108,7 @@ class WatchListViewController: UIViewController {
     /// Fetch wacthlist models
     private func fetchWatchlistData() {
         let symbols = PersistenceManager.shared.watchList
+        createPlaceholderViewModels()
         let group = DispatchGroup()
         for symbol in symbols where watchlistMap[symbol] == nil {
             group.enter()
@@ -132,6 +133,29 @@ class WatchListViewController: UIViewController {
         }
     }
     
+    private func createPlaceholderViewModels() {
+        let symbols = PersistenceManager.shared.watchList
+        symbols.forEach {
+            item in
+            viewModels.append(
+                .init(
+                    symbol: item,
+                    companyName: UserDefaults.standard.string(forKey: item) ?? "Company",
+                    price: "0.00",
+                    changeColor: .systemGreen,
+                    changePercentage: "0.00",
+                    chartViewModel: .init(
+                        data: [],
+                        showLegend: false,
+                        showAxis: false,
+                        fillColor: .clear
+                    )
+                )
+            )
+        }
+        tableView.reloadData()
+    }
+    
     /// Creates view models from models
     private func createViewModels() {
         var viewModels = [WatchListTableViewCell.ViewModel]()
@@ -154,7 +178,7 @@ class WatchListViewController: UIViewController {
             )
         }
         
-        self.viewModels = viewModels
+        self.viewModels = viewModels.sorted(by: { $0.symbol < $1.symbol })
     }
     
     /// Gets latest closing price
