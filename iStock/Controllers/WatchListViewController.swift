@@ -136,7 +136,7 @@ class WatchListViewController: UIViewController {
     private func createViewModels() {
         var viewModels = [WatchListTableViewCell.ViewModel]()
         for (symbol, candleSticks) in watchlistMap {
-            let changePercentage = getChangePercentage(symbol: symbol, data: candleSticks)
+            let changePercentage = candleSticks.getPercentage()
             viewModels.append(
                 .init(
                     symbol: symbol,
@@ -163,24 +163,6 @@ class WatchListViewController: UIViewController {
     private func getLatestClosingPrice(from data: [CandleStick]) -> String {
         guard let closingPrice = data.first?.close else { return "" }
         return .formatted(number: closingPrice)
-    }
-    
-    /// Gets change percentage for symbol data
-    /// - Parameters:
-    ///   - symbol: Symbol to check for
-    ///   - data: Collection of data
-    /// - Returns: Double percentage
-    private func getChangePercentage(symbol: String, data: [CandleStick]) -> Double {
-        let latestDate = data[0].date
-        guard let latestClose = data.first?.close,
-              let priorClose = data.first (where: {
-                  !Calendar.current.isDate($0.date, inSameDayAs: latestDate)
-              })?.close else {
-            return 0
-        }
-        
-        let diff = 1 - (priorClose / latestClose)
-        return diff
     }
 }
 //MARK: - UISearchResultsUpdate
